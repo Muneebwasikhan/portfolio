@@ -4,9 +4,20 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     images: {
-        unoptimized: true
+      loader: 'imgix',
+      path: 'public/assets/portfolio.gif',
+      unoptimized: true,
     }
 }
 }
 
 module.exports = nextConfig
+
+const withPWA = require("next-pwa");
+const runtimeCaching = require("next-pwa/cache");
+module.exports = withPWA({
+  pwa: {
+    dest: "public",
+    runtimeCaching,
+  },
+});
